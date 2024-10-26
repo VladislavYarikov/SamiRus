@@ -29,9 +29,9 @@
 	</div>
 
 	<div class="shields">
-        <div class="bange"><img src="/badges/googleplay.png" alt=""></div>
-        <div class="bange"><img src="/badges/rustore.png" alt=""></div>
-        <div class="bange"><img src="/badges/appstore.png" alt=""></div>
+        <div class="bange"><a href="https://play.google.com/store/apps/details?id=ru.sami.app"><img src="/badges/googleplay.png" alt=""></a></div>
+        <div class="bange"><a href="https://apps.apple.com/ru/app/%D1%81%D0%B0%D0%BC%D0%B8/id1549192749"><img src="/badges/appstore.png" alt=""></a></div>
+        <div class="bange"><a href="https://trk.mail.ru/c/me10h4?bundle_id=ru.sami.app"><img src="/badges/rustore.png" alt=""></a></div>
     </div>
 
 	<div class="title main-description">
@@ -149,11 +149,11 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 25vw;
+        width: 45vw;
     }
 
     .bange img {
-        width: 120%;
+		width: 100%;
         object-fit: contain;
     }
 
@@ -166,7 +166,7 @@
 		.main-section {
 			position: relative;
 			background: linear-gradient(to top, rgba(3, 39, 253, 0.7), #FFFFFF);
-			padding-bottom: 50px;
+			padding-bottom: 30px;
 			border-radius: 0 0 50px 50px;
 		}
 		.main-script {

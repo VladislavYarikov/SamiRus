@@ -21,9 +21,10 @@
     </div>
     <div class="content-container">
         {#each categories as category, index}
-            <div class="category-container"
-                 on:mouseenter={() => hoveredCategory = index}>
-                <div class="title"><h1>{category.title}</h1></div>
+            <div class="category-container" on:mouseenter={() => hoveredCategory = index}>
+                <div class="title {hoveredCategory === index ? 'hovered' : ''}">
+                    <h1>{category.title}</h1>
+                </div>
                 <div class="category-description"><h1>{category.description}</h1></div>
             </div>
         {/each}
@@ -44,16 +45,10 @@
 
     .phone-container {
         display: flex;
-        flex:1.5;
-		background: radial-gradient(circle 15vw at center, rgba(3, 39, 253, 0.7), #FFFFFF);
-        width: fit-content;
-        height: 100%;
+        flex: 1.5;
+        background: radial-gradient(circle closest-side at center, rgba(3, 39, 253, 0.7), #FFFFFF);
         justify-content: center;
         align-items: center;
-    }
-
-    .phone {
-        position: absolute;
     }
 
     .phone img {
@@ -61,37 +56,41 @@
     }
 
     .content-container {
-        flex:2;
+        flex: 2;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         height: 100%;
+        gap: 25px;
     }
 
-    .content-title {
-        color:#4A60DF;
+    .title {
+        color: black; /* Default color */
+        
+        transition: color 0.3s ease;
+    }
+
+    .title.hovered {
+        color: #4A60DF;
+        transition: color 0.3s ease;
     }
 
     .category-container {
+        cursor:default;
         display: flex;
         flex-direction: column;
         border-radius: 10px;   
         padding: 20px;
+        gap: 5px;
         background-color: white;
         filter: drop-shadow(7px 7px 10px rgba(3, 39, 253, 0.07)) 
-					drop-shadow(-7px 7px 10px rgba(3, 39, 253, 0.07));  
-    }
-
-    .title h1 {
-        font-family: 'Montserrat', sans-serif;
-        color: black;
-        font-size: large;
+                drop-shadow(-7px 7px 10px rgba(3, 39, 253, 0.07));  
     }
 
     .category-description h1 {
         font-family: 'Montserrat', sans-serif;
         color: black;
-        font-size: 15px;
+        font-size: 14px;
         font-weight: 500;
     }
 </style>

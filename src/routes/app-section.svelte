@@ -85,7 +85,7 @@ onMount(() => {
 
 <section class="app-section">
     <div class="header title">
-        <h1>Функция</h1>
+        <h1>Шаг {page+1}</h1>
         <h1>0{page+1}/04</h1>
     </div>
 
@@ -93,7 +93,7 @@ onMount(() => {
         <div class="button-container">
             <div class="button-placement">
                 <!-- svelte-ignore a11y_consider_explicit_label -->
-                <button on:click={() => pageHandler(-1)} class="prev">
+                <button on:click={() => pageHandler(-1)} class={page === 0 ? 'disabled' : 'prev'}>
                     <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="48"
@@ -108,7 +108,7 @@ onMount(() => {
                     </svg
                   ></button>
                 <!-- svelte-ignore a11y_consider_explicit_label -->
-                <button on:click={() => pageHandler(1)} class="next">
+                <button on:click={() => pageHandler(1)} class={page+1 == PAGE_NUMBER ? 'disabled' : 'next'}>
                     <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="48"
@@ -146,14 +146,17 @@ onMount(() => {
 </section>
 
 <style>
+    .disabled {
+        opacity: 0%;
+    }
     .app-section {
         display: flex;
         overflow: hidden;
-        padding-bottom: 20px;
+        padding-bottom: 25px;
         scroll-snap-type: x mandatory;
         flex-direction: column;
         justify-content: space-between;
-        min-height: 85vh;
+        min-height: 90vh;
         background: linear-gradient(to top, rgba(3, 39, 253, 0.7), #FFFFFF 90%);
         border-radius: 35px;
         box-sizing: border-box;
@@ -176,7 +179,7 @@ onMount(() => {
             display: flex;
             position: relative;
             max-height: 50vh;
-            margin: auto;
+            margin: 0px auto;
             height: 100%;
             }
 
@@ -203,8 +206,7 @@ onMount(() => {
             display: flex;
             align-items: center;
             color: white;
-            height: 100px;
-            font-size: calc(0.7vh + 0.7vw);
+            font-size: 10px;
             }
 
             .description * {

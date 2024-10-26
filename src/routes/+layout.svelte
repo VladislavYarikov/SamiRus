@@ -25,7 +25,7 @@
             <a href="https://sami.plus/public-offer.pdf" class="link">Публичная оферта</a>
             <a href="https://sami.plus/digital-services.pdf" class="link">Список цифровых услуг</a>
         </div>
-        <span data-v-6c6d36f5>© 2024 Сами. Почта sami.plus@list.ru</span>
+        <span data-v-6c6d36f5>© 2021 Сами. Почта sami.plus@list.ru</span>
     </footer>
 </div>
 
@@ -41,7 +41,7 @@
 	header {
             height: 50px;
             overflow: hidden; /* Ensures no overflow */
-			margin-bottom: 40px;
+			margin-bottom: 20px;
         }
 
         header::before {
@@ -54,8 +54,7 @@
 			height: 50px;
             background-image: url('/Header.png'); /* Background image */
             background-size: cover;
-            background-position: center;
-            filter: grayscale(100%); /* Apply grayscale filter */
+            background-position: bottom;
             z-index: 0; /* Send the background behind other elements */
         }
 
@@ -73,7 +72,7 @@
 
     footer {
         display: flex;
-        padding: 30px;
+        padding: 20px;
         justify-content: center;
         flex-direction: column;
         gap: 25px;

@@ -19,7 +19,7 @@
 </script>
 
 <div class="about-container">
-    <div class="about-item">
+    <div class="about-item" on:click={toggleExpand}>
         <div class="about-title">
             <h1>{title}</h1>
         </div>
@@ -28,9 +28,9 @@
             bind:this={descriptionRef} 
             style="max-height: {descriptionHeight}px;"
         >
-            <h1>{description}</h1>
+            {@html description}
         </div>
-        <button on:click={toggleExpand}>
+        <button>
             {#if isExpanded}
             <svg class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="4" d="m5 15 7-7 7 7"/>
@@ -49,7 +49,7 @@
     .about-container {
         display: flex;
         flex-direction: column;
-        width: 100%;
+        width: 550px;
         align-items: center;
     }
 
@@ -58,10 +58,10 @@
         flex-direction: column;
         box-sizing: border-box;
         align-items: center;
+        width: 100%;
 
-        padding:  clamp(10px, calc(3vh + 3vw), 80px)  clamp(10px, calc(3vh + 3vw), 80px);
-        width: 80vw;
-        max-width: 1500px;
+        padding:  20px;
+        padding-top: 40px;
         background-color: white;
         filter: drop-shadow(7px 7px 10px rgba(3, 39, 253, 0.07)) drop-shadow(-7px 7px 10px rgba(3, 39, 253, 0.07));
         border-radius: 2vh;
@@ -83,12 +83,12 @@
     .about-description {
         overflow: hidden;
         transition: max-height 0.2s ease-in-out; 
-    }
-    .about-description * {
         text-align: start;
+        
         color: black;
         font-weight: 500;
-        font-size: clamp(16px, calc(0.7vh + 0.7vw), 40px);
+        font-size: 15px;
+        width: 100%;
     }
 
     button {

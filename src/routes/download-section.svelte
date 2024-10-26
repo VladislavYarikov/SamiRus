@@ -3,9 +3,9 @@
         <h1>Скачивайте в Google play, App store и Rustore</h1>
     </div>
     <div class="shields">
-        <div class="bange"><img src="/badges/googleplay.png" alt=""></div>
-        <div class="bange"><img src="/badges/rustore.png" alt=""></div>
-        <div class="bange"><img src="/badges/appstore.png" alt=""></div>
+        <div class="bange"><a href="https://play.google.com/store/apps/details?id=ru.sami.app"><img src="/badges/googleplay.png" alt=""></a></div>
+        <div class="bange"><a href="https://apps.apple.com/ru/app/%D1%81%D0%B0%D0%BC%D0%B8/id1549192749"><img src="/badges/appstore.png" alt=""></a></div>
+        <div class="bange"><a href="https://trk.mail.ru/c/me10h4?bundle_id=ru.sami.app"><img src="/badges/rustore.png" alt=""></a></div>
     </div>
 </section>
 
