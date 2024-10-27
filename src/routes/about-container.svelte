@@ -79,7 +79,7 @@
         background-color: white;
         border-radius: 20px;
 
-        transition: box-shadow 0.4s ease;
+        transition: box-shadow 3s ease;
 
         text-align: center;
         font-family: 'Montserrat', sans-serif;
