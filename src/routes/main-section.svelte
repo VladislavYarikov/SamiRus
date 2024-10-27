@@ -7,21 +7,11 @@
 <section class="main-section">
 	<div class="title main-script">
 		<h2>
-			Аренда спецтехники
+			Экскаватор-погрузчик
 		</h2>
 		<h2>
 			за 1 минуту
 		</h2>
-	</div>
-	
-	<div class="tech-block">
-		<div class="title">
-			<h1>Экскаватор-погрузчик</h1>
-		</div>
-		<img src="/tech/Экскаватор.png" alt="">
-		<div class="order-button">
-			<a href="#" on:click|preventDefault={scrollToBottom} class="title">Скачать!</a>
-		</div>
 	</div>
 
 	<div class="phone">
@@ -85,7 +75,7 @@
 		justify-content: center;
 		text-align: center;
 		overflow: hidden;
-		padding-top: 130px;
+		padding-top: 30px;
 		padding-bottom: 20px;
 	}
 
@@ -163,6 +153,10 @@
 		.shields {
 			display: flex;
 		}
+		.bange img{
+			border-radius: 10px;
+			box-shadow: -4px -4px 10px rgba(96, 119, 254, 0.6), 4px -4px 10px rgba(96, 119, 254, 0.6);
+		}
 		.main-section {
 			position: relative;
 			background: linear-gradient(to top, rgba(3, 39, 253, 0.7), #FFFFFF);
@@ -170,7 +164,7 @@
 			border-radius: 0 0 50px 50px;
 		}
 		.main-script {
-			color: #4A60DF;
+			color: black;
 			font-size: 1.1rem;
 			font-weight: 700;
 		}
