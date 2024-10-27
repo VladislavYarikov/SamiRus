@@ -15,6 +15,7 @@
     })
 
     function toggleExpand() {
+        itemRef.style.boxShadow = "";
         if (!isExpanded) {
             // Measure the height of the content when fully expanded
             descriptionHeight = descriptionRef.scrollHeight;
@@ -25,7 +26,6 @@
         isExpanded = !isExpanded;
         
         setTimeout(() => {
-            itemRef.style.boxShadow = "";
             itemRef.style.boxShadow = "7px 7px 10px rgba(3, 39, 253, 0.07), -7px 7px 10px rgba(3, 39, 253, 0.07)";
         }, 200);
     }
@@ -77,7 +77,9 @@
         padding-top: 40px;
         padding-bottom: 0px;
         background-color: white;
-        border-radius: 2vh;
+        border-radius: 20px;
+
+        transition: box-shadow 0.4s ease;
 
         text-align: center;
         font-family: 'Montserrat', sans-serif;
@@ -91,7 +93,7 @@
 
     .about-description {
         overflow: hidden;
-        transition: max-height 0.2s ease-in-out; 
+        transition: max-height 0.4s ease-in-out; 
         text-align: start;
         
         color: black;
