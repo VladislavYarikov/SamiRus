@@ -6,7 +6,10 @@
     let descriptionHeight = 0;
     let descriptionRef;
 
+    let itemRef;
+
     function toggleExpand() {
+        itemRef.style.boxShadow = "";
         if (!isExpanded) {
             // Measure the height of the content when fully expanded
             descriptionHeight = descriptionRef.scrollHeight;
@@ -15,11 +18,15 @@
             descriptionHeight = 0;
         }
         isExpanded = !isExpanded;
+        
+        setTimeout(() => {
+            itemRef.style.boxShadow = "7px 7px 10px rgba(3, 39, 253, 0.07), -7px 7px 10px rgba(3, 39, 253, 0.07)";
+        }, 200);
     }
 </script>
 
 <div class="about-container">
-    <div class="about-item" on:click={toggleExpand}>
+    <div class="about-item" on:click={toggleExpand} bind:this={itemRef}>
         <div class="about-title">
             <h1>{title}</h1>
         </div>
