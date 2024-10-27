@@ -208,7 +208,7 @@ onMount(() => {
             display: flex;
             align-items: center;
             color: white;
-            font-size: 10px;
+            font-size: 11px;
             }
 
             .description * {
