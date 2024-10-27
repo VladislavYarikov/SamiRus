@@ -46,6 +46,7 @@ const touchStartHandler = (event) => {
     startX = event.touches[0].clientX;
     isDragging = true;
     slider.style.transition = '';
+    event.preventDefault();
 };
 
 const touchMoveHandler = (event) => {
@@ -53,6 +54,7 @@ const touchMoveHandler = (event) => {
     currentX = event.touches[0].clientX;
     moveX = (currentX - startX) / window.innerWidth * 100; // Move relative to viewport width
     updateSliderPosition(); // Update the slider position dynamically
+    event.preventDefault();
 };
 
 const touchEndHandler = () => {
