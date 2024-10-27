@@ -157,7 +157,6 @@ onMount(() => {
         padding-bottom: 25px;
         scroll-snap-type: x mandatory;
         flex-direction: column;
-        min-height: 90vh;
         background: linear-gradient(to top, rgba(3, 39, 253, 0.7), #FFFFFF 90%);
         border-radius: 35px;
         box-sizing: border-box;
