@@ -20,7 +20,7 @@
         isExpanded = !isExpanded;
         
         setTimeout(() => {
-            itemRef.style.boxShadow = "7px 7px 10px rgba(3, 39, 253, 0.07), -7px 7px 10px rgba(3, 39, 253, 0.07)";
+            itemRef.style.boxShadow = "7px 7px 10px red, -7px 7px 10px rgba(3, 39, 253, 0.07)";
         }, 200);
     }
 </script>
