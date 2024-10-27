@@ -51,6 +51,7 @@
         flex-direction: column;
         width: 550px;
         align-items: center;
+        filter: drop-shadow(7px 7px 10px rgba(3, 39, 253, 0.07)) drop-shadow(-7px 7px 10px rgba(3, 39, 253, 0.07));
     }
 
     .about-item {
@@ -62,16 +63,12 @@
 
         padding:  20px;
         padding-top: 40px;
+        padding-bottom: 0px;
         background-color: white;
-        filter: drop-shadow(7px 7px 10px rgba(3, 39, 253, 0.07)) drop-shadow(-7px 7px 10px rgba(3, 39, 253, 0.07));
         border-radius: 2vh;
 
         text-align: center;
         font-family: 'Montserrat', sans-serif;
-    }
-
-    .about-title {
-        margin-bottom: clamp(16px, calc(1vh + 1vw), 40px);
     }
 
     .about-title * {
@@ -107,8 +104,7 @@
         background: linear-gradient(to top, #526BFD, #FFFFFF);
         color: white;
         border-radius: 100%;
-        position: absolute;
-        transform: translateY(+50%);
+        transform: translateY(50%);
         bottom: 0;
     }
 

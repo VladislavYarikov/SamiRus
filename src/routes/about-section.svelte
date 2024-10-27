@@ -87,4 +87,8 @@
         gap: 30px;           
 		justify-content:space-around; 
     }
+
+    .about-section :first {
+        filter: drop-shadow(7px 7px 10px rgba(3, 39, 253, 0.07)) drop-shadow(-7px 7px 10px rgba(3, 39, 253, 0.07));
+    }
 </style>
