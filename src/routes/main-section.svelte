@@ -48,7 +48,7 @@
 	
 	.main-section {
 		position: relative;
-		background: radial-gradient(circle 350px at center, rgba(3, 39, 253, 0.7), #FFFFFF);
+		background: radial-gradient(circle closest-side at center, rgba(3, 39, 253, 0.7), #FFFFFF);
 		padding-bottom: 50px;
 		border-radius: 0 0 50px 50px;
 	}
