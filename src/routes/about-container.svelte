@@ -51,7 +51,6 @@
         flex-direction: column;
         width: 550px;
         align-items: center;
-        filter: drop-shadow(7px 7px 10px rgba(3, 39, 253, 0.07)) drop-shadow(-7px 7px 10px rgba(3, 39, 253, 0.07));
     }
 
     .about-item {
@@ -66,6 +65,7 @@
         padding-bottom: 0px;
         background-color: white;
         border-radius: 2vh;
+        box-shadow: 7px 7px 10px rgba(3, 39, 253, 0.07), -7px 7px 10px rgba(3, 39, 253, 0.07);
 
         text-align: center;
         font-family: 'Montserrat', sans-serif;
