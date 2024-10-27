@@ -1,4 +1,6 @@
 <script>
+	import { onMount } from "svelte";
+
     export let title;
     export let description;
 
@@ -8,8 +10,11 @@
 
     let itemRef;
 
+    onMount(()=> {
+        itemRef.style.boxShadow = "7px 7px 10px rgba(3, 39, 253, 0.07), -7px 7px 10px rgba(3, 39, 253, 0.07)";
+    })
+
     function toggleExpand() {
-        itemRef.style.boxShadow = "";
         if (!isExpanded) {
             // Measure the height of the content when fully expanded
             descriptionHeight = descriptionRef.scrollHeight;
@@ -20,7 +25,8 @@
         isExpanded = !isExpanded;
         
         setTimeout(() => {
-            itemRef.style.boxShadow = "7px 7px 10px red, -7px 7px 10px rgba(3, 39, 253, 0.07)";
+            itemRef.style.boxShadow = "";
+            itemRef.style.boxShadow = "7px 7px 10px rgba(3, 39, 253, 0.07), -7px 7px 10px rgba(3, 39, 253, 0.07)";
         }, 200);
     }
 </script>
@@ -72,7 +78,6 @@
         padding-bottom: 0px;
         background-color: white;
         border-radius: 2vh;
-        box-shadow: 7px 7px 10px rgba(3, 39, 253, 0.07), -7px 7px 10px rgba(3, 39, 253, 0.07);
 
         text-align: center;
         font-family: 'Montserrat', sans-serif;
