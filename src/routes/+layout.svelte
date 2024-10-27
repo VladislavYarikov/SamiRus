@@ -3,8 +3,8 @@
 </script>
 
 <svelte:head>
-	<title>Home</title>
-	<meta name="description" content="Svelte demo app" />
+	<title>сами.рус</title>
+	<meta name="description" content="Приложение Сами" />
 </svelte:head>
 
 <div class="app">
