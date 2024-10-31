@@ -51,9 +51,14 @@ const { title, description } = Astro.props;
 
   <body style="--header-height: 64px">
     <header class="relative h-[var(--header-height)] w-full flex items-center">
-      <span class="relative z-10 text-accent font-bold text-4xl ml-8">
-        Сами
-      </span>
+      <div>
+        <span class="relative z-10 text-accent font-bold text-4xl ml-8">
+          Сами
+        </span>
+        <span class="text-accent text-xl relative z-10"
+          >аренда спецтехники
+        </span>
+      </div>
       <div class="absolute z-0 inset-0">
         <Image
           class="size-full object-cover object-bottom"
