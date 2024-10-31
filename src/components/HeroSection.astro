@@ -1,0 +1,77 @@
+---
+import { Image } from "astro:assets";
+
+import iphoneMockup from "@/assets/landing/iphone-mockup.png";
+
+import appStoreBadge from "@/assets/landing/badges/appstore.png";
+import googlePlayBadge from "@/assets/landing/badges/googleplay.png";
+import rustoreBadge from "@/assets/landing/badges/rustore.png";
+---
+
+<section
+  class="relative flex h-[calc(95vh-var(--header-height))] min-h-[700px] flex-col gap-2 rounded-b-[50px] bg-linear-accent pb-10 pt-6 tablet:h-auto tablet:min-h-max tablet:gap-10 tablet:bg-none"
+  id="hero"
+>
+  <div class="text-center">
+    <h1 class="px-1 text-3xl font-bold text-accent tablet:text-6xl">
+      Аренда спецтехники
+      <br />
+      за 1 минуту
+    </h1>
+  </div>
+
+  <div
+    class="flex h-full w-full items-center justify-center overflow-hidden tablet:h-auto tablet:bg-radial-blue"
+  >
+    <Image
+      class="h-full w-full object-contain tablet:max-w-[600px]"
+      src={iphoneMockup}
+      alt="Мобильное приложение Сами для аренды спецтехники на экране iPhone"
+    />
+  </div>
+
+  <div class="flex flex-wrap items-center justify-center gap-4 py-4">
+    <div class="badge">
+      <a
+        href="https://play.google.com/store/apps/details?id=ru.sami.app"
+        aria-label="Ссылка на Google Play"
+      >
+        <Image src={googlePlayBadge} alt="Google Play" />
+      </a>
+    </div>
+    <div class="badge">
+      <a
+        href="https://apps.apple.com/ru/app/%D1%81%D0%B0%D0%BC%D0%B8/id1549192749"
+        aria-label="Ссылка на App Store"
+      >
+        <Image src={appStoreBadge} alt="AppStore" />
+      </a>
+    </div>
+    <div class="badge">
+      <a
+        href="https://trk.mail.ru/c/me10h4?bundle_id=ru.sami.app"
+        aria-label="Ссылка на Rustore"
+      >
+        <Image src={rustoreBadge} alt="Rustore" />
+      </a>
+    </div>
+  </div>
+
+  <div class="px-4 text-center text-white tablet:text-accent">
+    <h2 class="text-xl tablet:font-bold">
+      Удобный поиск заказчиков и исполнителей в бесплатном мобильном приложении.
+    </h2>
+  </div>
+</section>
+
+<style lang="postcss">
+	.badge {
+		@apply shrink-0;
+		width: calc(50% - 1rem);
+		max-width: 200px;
+
+		a {
+			@apply size-full;
+		}
+	}
+</style>

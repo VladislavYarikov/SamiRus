@@ -1,0 +1,23 @@
+---
+import Layout from "@/layouts/Layout.astro";
+
+import DownloadsSection from "@/components/DownloadsSection.astro";
+import FaqSection from "@/components/FaqSection.astro";
+import FeaturesSection from "@/components/FeaturesSection.astro";
+import HeroSection from "@/components/HeroSection.astro";
+import HowToUseSection from "@/components/HowToUseSection.astro";
+
+const title = "Аренда спецтехники без комиссии | Мобильное приложение Сами";
+const description =
+  "Аренда спецтехники в Москве, Московской области и по всей России через приложение САМИ. Более 40 категорий: автокраны, экскаваторы, автовышки. Поиск ближайшей техники в вашем районе.";
+---
+
+<Layout title={title} description={description}>
+  <div class="flex flex-col gap-16">
+    <HeroSection />
+    <FeaturesSection />
+    <HowToUseSection />
+    <FaqSection />
+    <DownloadsSection />
+  </div>
+</Layout>

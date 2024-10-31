@@ -1,0 +1,81 @@
+---
+import LenseImg from "@/assets/landing/icons/lense.png";
+import PhoneImg from "@/assets/landing/icons/phone.png";
+import RocketImg from "@/assets/landing/icons/rocket.png";
+import WalletImg from "@/assets/landing/icons/wallet.png";
+import { Image } from "astro:assets";
+
+const features: {
+  image: any;
+  title: string;
+  alt: string;
+  description: string;
+}[] = [
+  {
+    image: WalletImg,
+    title: "Без комиссии",
+    alt: "Кошелёк - символ отсутствия комиссии в приложении Сами",
+    description:
+      "Мы не берем комиссию за заключение сделки. Вы Сами договариваетесь об условиях аренды спецтехники, включая форму оплаты и сроки выполнения заказа.",
+  },
+  {
+    image: RocketImg,
+    title: "Быстрая регистрация",
+    alt: "Ракета - символ быстрой регистрации в приложении Сами",
+    description:
+      "Зарегистрируйтесь всего за минуту: введите номер телефона, подтвердите его полученным кодом, и начните поиск нужной спецтехники.",
+  },
+  {
+    image: PhoneImg,
+    title: "Понятный интерфейс",
+    alt: "Смартфон - символ понятного интерфейса приложения Сами",
+    description:
+      "Вы сами разберетесь в приложении, даже не являясь опытным пользователем смартфона, и сможете арендовать технику без обучения и посторонней помощи.",
+  },
+  {
+    image: LenseImg,
+    title: "Поиск по карте",
+    alt: "Лупа - символ поиска по карте в приложении Сами",
+    description:
+      "Вся доступная спецтехника отмечена на интерактивной карте. Выберите нужную технику и свяжитесь напрямую с владельцем по указанному номеру телефона.",
+  },
+];
+---
+
+<section
+  class="relative grid grid-cols-1 justify-items-center gap-8 p-8 tablet:grid-cols-2 laptop:grid-cols-4"
+  id="features"
+>
+  <!-- Hidden heading for SEO -->
+  <h2 class="seo-hidden">Преимущества Сами</h2>
+
+  {
+    features.map((feature) => (
+      // Feature card
+      <div class="custom-shadow flex max-w-[320px] flex-col items-center gap-6 rounded-2xl bg-white p-8">
+        <div class="relative size-[110px] rounded-2xl bg-linear-accent-sm">
+          <Image
+            src={feature.image}
+            alt={feature.alt}
+            class="absolute inset-0 w-full h-full object-contain"
+            loading="lazy"
+            decoding="async"
+          />
+        </div>
+        <div class="text-xl font-bold text-accent">
+          <h3>{feature.title}</h3>
+        </div>
+        <div class="">
+          <h4>{feature.description}</h4>
+        </div>
+      </div>
+    ))
+  }
+</section>
+
+<style lang="postcss">
+	.custom-shadow {
+		filter: drop-shadow(7px 7px 10px rgba(3, 39, 253, 0.07))
+			drop-shadow(-7px 7px 10px rgba(3, 39, 253, 0.07));
+	}
+</style>

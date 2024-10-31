@@ -1,0 +1,124 @@
+---
+import "@/styles/base.css";
+import { Image } from "astro:assets";
+
+import headerBg from "@/assets/landing/header-bg.png";
+import CommonNav from "@/components/CommonNav.astro";
+
+import SpeedInsights from "@vercel/speed-insights/astro";
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title} />
+    <meta name="description" content={description} />
+
+    <!-- Keywords -->
+    <meta
+      name="keywords"
+      content="аренда спецтехники москва, спецтехника московская область, аренда строительной техники москва, аренда техники, мобильное приложение аренды, трактор, автокран, экскаватор, автовышка"
+    />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://сами.рус/" />
+    <meta property="og:title" content={title} />
+    <meta
+      property="og:description"
+      content="Аренда спецтехники в Москве, Московской области и по всей России через приложение САМИ. Более 40 категорий: автокраны, экскаваторы, автовышки. Поиск ближайшей техники в вашем районе."
+    />
+    <meta property="og:image" content="https://сами.рус/sami-preview.jpg" />
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://сами.рус/" />
+  </head>
+
+  <body style="--header-height: 64px">
+    <header class="relative h-[var(--header-height)] w-full flex items-center">
+      <span class="relative z-10 text-accent font-bold text-4xl ml-8">
+        Сами
+      </span>
+      <div class="absolute z-0 inset-0">
+        <Image
+          class="size-full object-cover object-bottom"
+          src={headerBg}
+          alt="Фоновое изображение"
+          loading="lazy"
+          decoding="async"
+        />
+      </div>
+
+      <CommonNav className="seo-hidden" />
+    </header>
+
+    <slot />
+
+    <footer class="bg-gray-100 text-gray-600 py-8 px-4 md:px-8">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid gap-8 mb-8">
+          <!-- CommonNav -->
+          <CommonNav
+            className="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4 gap-4"
+          />
+
+          <!-- Other links -->
+          <div
+            class="grid grid-cols-1 tablet:grid-cols-2 laptop:grid-cols-3 desktop:grid-cols-4 gap-4"
+          >
+            <a
+              href="https://sami.plus/user-agreement.pdf"
+              class="hover:text-blue-600 transition duration-300"
+            >
+              Пользовательское соглашение
+            </a>
+            <a
+              href="https://sami.plus/user-agreement.pdf"
+              class="hover:text-blue-600 transition duration-300"
+            >
+              Политика конфидициальности
+            </a>
+            <a
+              href="https://sami.plus/public-offer.pdf"
+              class="hover:text-blue-600 transition duration-300"
+            >
+              Публичная оферта
+            </a>
+            <a
+              href="https://sami.plus/digital-services.pdf"
+              class="hover:text-blue-600 transition duration-300"
+            >
+              Список цифровых услуг
+            </a>
+          </div>
+        </div>
+
+        <div class="text-center text-sm">
+          <p>
+            © 2021 Сами. Почта <a
+              href="mailto:sami.plus@list.ru"
+              class="hover:text-blue-600 transition duration-300"
+            >
+              support@sami.plus
+            </a>
+          </p>
+        </div>
+      </div>
+    </footer>
+
+    <SpeedInsights />
+  </body>
+</html>

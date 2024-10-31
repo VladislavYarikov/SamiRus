@@ -1,0 +1,112 @@
+---
+import { cn } from "@/lib";
+import Slider from "./Slider.svelte";
+
+import Screen1 from "@/assets/landing/screens/1.png";
+import Screen2 from "@/assets/landing/screens/2.png";
+import Screen3 from "@/assets/landing/screens/3.png";
+import Screen4 from "@/assets/landing/screens/4.png";
+import { Image } from "astro:assets";
+
+let slides = [
+  {
+    src: Screen1,
+    alt: "Выбор роли в приложении Сами: заказчик или владелец спецтехники",
+    title: "Шаг 1. Регистрируйтесь",
+    description:
+      "Вы заказчик или исполнитель? Дайте знать, нажав на соответствующую кнопку. Создайте личный профиль, чтобы иметь возможность просматривать метки на карте.",
+  },
+  {
+    src: Screen2,
+    alt: "Интерактивная карта аренды спецтехники в приложении Сами",
+    title: "Шаг 2. Находите рядом предложения или ставьте метки",
+    description:
+      "Изучите актуальные предложения аренды автокранов, экскаваторов и другой спецтехники на карте. Не нашли нужную технику? Создайте собственную метку с запросом или предложением.",
+  },
+  {
+    src: Screen3,
+    alt: "Фильтр для поиска спецтехники в приложении Сами",
+    title: "Шаг 3. Воспользуйтесь фильтром",
+    description:
+      "Используйте фильтр в правом верхнем углу для поиска конкретной спецтехники, например, автовышки или самосвала. Выберите нужные параметры, чтобы видеть только нужные предложения на карте.",
+  },
+  {
+    src: Screen4,
+    alt: "Контакты владельца спецтехники в приложении Сами",
+    title: "Шаг 4. Договаривайтесь о сотрудничестве",
+    description:
+      "Свяжитесь напрямую с владельцем спецтехники или заказчиком, кликнув на выбранную метку. Обсудите детали аренды строительной техники, включая время работы, место доставки и стоимость услуг.",
+  },
+];
+---
+
+<section
+  class="flex flex-col rounded-b-[35px] bg-linear-accent pb-8 laptop:bg-none laptop:px-8"
+  id="how-to-use"
+>
+  <div
+    class="flex flex-row justify-between px-8 pb-4 laptop:justify-center laptop:pb-11"
+  >
+    <h2 class="text-xl font-bold text-accent laptop:text-3xl">
+      Как пользоваться приложением?
+    </h2>
+    <h3 class="text-xl font-bold text-accent laptop:hidden">
+      <span data-slide-indicator="true">01</span>/04
+    </h3>
+  </div>
+
+  <Slider
+    slides={slides.length}
+    class={"mt-4 h-full"}
+    sliderClass={"laptop:flex-col gap-4 laptop:overflow-visible laptop:gap-8"}
+    client:visible
+  >
+    {
+      slides.map((slide, index) => (
+        <div class="w-full flex-none snap-center px-4" data-slide={index}>
+          <figure class="flex h-full flex-col gap-2 laptop:flex-row">
+            <div class={cn("image-container")}>
+              <Image
+                class="absolute inset-0 h-full w-full select-none object-contain"
+                src={slide.src}
+                alt={slide.alt}
+                loading="lazy"
+                decoding="async"
+              />
+            </div>
+            <figcaption class="caption">
+              <h4 class="max-laptop:seo-hidden text-2xl font-bold">
+                {slide.title}
+              </h4>
+              <p>{slide.description}</p>
+            </figcaption>
+          </figure>
+        </div>
+      ))
+    }
+  </Slider>
+</section>
+
+<style lang="postcss">
+	.caption {
+		/* mobile styles */
+		@apply w-full shrink-0 break-words text-center text-white;
+		/* laptop styles */
+		@apply laptop:ml-auto laptop:flex laptop:w-1/2 laptop:shrink laptop:flex-col laptop:gap-2 laptop:rounded-2xl laptop:bg-white laptop:p-4 laptop:text-left laptop:text-black;
+		@apply laptop:cursor-pointer laptop:transition-all laptop:duration-300 laptop:ease-in-out laptop:hover:text-accent;
+		@apply laptop:relative laptop:z-10 laptop:shadow-custom;
+	}
+
+	.image-container {
+		@apply relative h-[60vh] shrink-0;
+
+		@apply laptop:absolute laptop:bottom-0 laptop:left-0 laptop:top-0 laptop:h-auto laptop:w-1/2;
+		@apply laptop:bg-radial-blue;
+	}
+
+  .active {
+    .image-container {
+      z-index: 9 !important;
+    }
+  }
+</style>
