@@ -1,13 +1,47 @@
 // @ts-check
+import svelte from '@astrojs/svelte';
+import tailwind from '@astrojs/tailwind';
 import { defineConfig } from 'astro/config';
 
-import tailwind from '@astrojs/tailwind';
+import node from '@astrojs/node';
+import { loadEnv } from "vite";
 
-import svelte from '@astrojs/svelte';
+const loadEnvConfig = () => {
+  // @ts-expect-error
+  let { PUBLIC_DOMAIN } = loadEnv(process.env.NODE_ENV, process.cwd(), "");
+
+  if (process.env.NODE_ENV === 'development') {
+    PUBLIC_DOMAIN = 'http://localhost:4321'
+  } else if (!PUBLIC_DOMAIN) {
+    throw new Error('PUBLIC_DOMAIN is required');
+  }
+
+  return { PUBLIC_DOMAIN };
+}
+
+const { PUBLIC_DOMAIN } = loadEnvConfig();
 
 // https://astro.build/config
 export default defineConfig({
+  output: "server",
+  site: PUBLIC_DOMAIN,
+
+  adapter: node({
+    mode: 'standalone',
+  }),
+
   integrations: [tailwind({
     applyBaseStyles: false
-  }), svelte()]
+  }), svelte()],
+
+  redirects: {
+    '/terms': {
+      status: 301,
+      destination: '/legal/user-agreement.pdf'
+    },
+    '/privacy': {
+      status: 301,
+      destination: '/legal/privacy-policy.pdf'
+    }
+  }, 
 });

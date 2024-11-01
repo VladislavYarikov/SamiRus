@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "ru.sami.app",
+    "sha256_cert_fingerprints":
+    ["AD:CB:92:BC:F4:CF:A8:AD:AE:7D:B8:51:10:24:B4:80:E7:33:04:E9:29:A0:F6:EF:F8:65:7F:A4:5F:DF:6D:9C"]
+  }
+}]

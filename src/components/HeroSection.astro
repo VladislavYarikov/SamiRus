@@ -27,6 +27,7 @@ import rustoreBadge from "@/assets/landing/badges/rustore.png";
       class="h-full w-full object-contain tablet:max-w-[600px]"
       src={iphoneMockup}
       alt="Мобильное приложение Сами для аренды спецтехники на экране iPhone"
+      loading="eager"
     />
   </div>
 
@@ -36,7 +37,7 @@ import rustoreBadge from "@/assets/landing/badges/rustore.png";
         href="https://play.google.com/store/apps/details?id=ru.sami.app"
         aria-label="Ссылка на Google Play"
       >
-        <Image src={googlePlayBadge} alt="Google Play" />
+        <Image src={googlePlayBadge} alt="Google Play" loading="lazy" />
       </a>
     </div>
     <div class="badge">
@@ -44,7 +45,7 @@ import rustoreBadge from "@/assets/landing/badges/rustore.png";
         href="https://apps.apple.com/ru/app/%D1%81%D0%B0%D0%BC%D0%B8/id1549192749"
         aria-label="Ссылка на App Store"
       >
-        <Image src={appStoreBadge} alt="AppStore" />
+        <Image src={appStoreBadge} alt="AppStore" loading="lazy" />
       </a>
     </div>
     <div class="badge">
@@ -52,7 +53,7 @@ import rustoreBadge from "@/assets/landing/badges/rustore.png";
         href="https://trk.mail.ru/c/me10h4?bundle_id=ru.sami.app"
         aria-label="Ссылка на Rustore"
       >
-        <Image src={rustoreBadge} alt="Rustore" />
+        <Image src={rustoreBadge} alt="Rustore" loading="lazy" />
       </a>
     </div>
   </div>

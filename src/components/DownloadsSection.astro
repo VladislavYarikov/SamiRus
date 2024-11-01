@@ -4,9 +4,16 @@ import { Image } from "astro:assets";
 import appStoreBadge from "@/assets/landing/badges/appstore.png";
 import googlePlayBadge from "@/assets/landing/badges/googleplay.png";
 import rustoreBadge from "@/assets/landing/badges/rustore.png";
+import { cn } from "@/lib";
+
+interface Props {
+  className?: string;
+}
+
+const { className } = Astro.props;
 ---
 
-<section class="" id="downloads">
+<section class={cn("", className)} id="downloads">
   <div class="px-4 text-center">
     <h2 class="text-4xl font-bold laptop:text-6xl">
       Скачивайте приложение Сами в
@@ -14,8 +21,9 @@ import rustoreBadge from "@/assets/landing/badges/rustore.png";
       Google Play, Appstore и Rustore
     </h2>
   </div>
+
   <div
-    class="flex flex-wrap items-center justify-center gap-4 rounded-[36px] bg-linear-accent py-20"
+    class="flex flex-wrap items-center justify-center gap-4 rounded-[36px] bg-linear-accent py-20 "
   >
     <div class="badge">
       <a

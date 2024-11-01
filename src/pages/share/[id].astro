@@ -1,0 +1,53 @@
+---
+import DownloadsSection from "@/components/DownloadsSection.astro";
+import Layout from "@/layouts/Layout.astro";
+
+import type { PointShare } from "@/lib/point-share.type";
+
+const REQUEST = 1;
+const TECHNIC = 2;
+
+const { id } = Astro.params;
+
+const url = new URL(`https://api.сами.рус/points/share/${id}/nolog`);
+const point = (await fetch(url.toString()).then((res) =>
+  res.json()
+)) as PointShare;
+
+console.warn(point);
+
+const categoryTitle = point.category.title;
+
+const title = `Посмотрите ${
+  point.type === REQUEST
+    ? `заказ на ${categoryTitle}`
+    : `технику в категории ${categoryTitle}`
+} в приложении Сами`;
+
+const description = `Скачайте приложение Сами и посмотрите ${
+  point.type === REQUEST
+    ? `заказ на ${categoryTitle}`
+    : `технику в категории ${categoryTitle}`
+}`;
+---
+
+<Layout title={title} description={description}>
+  <slot slot="meta">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content={`${import.meta.env.SITE}${Astro.url.pathname}`}
+    />
+    <meta property="og:title" content="Сами" />
+    <meta property="og:description" content={title} />
+    <meta
+      property="og:image"
+      content={`${import.meta.env.SITE}/assets/category/og/${point.category_id}.png`}
+    />
+  </slot>
+
+  <div class="flex flex-col gap-16">
+    <DownloadsSection className={"min-h-screen pt-16"} />
+  </div>
+</Layout>
