@@ -13,6 +13,7 @@
     "@astrojs/node": "^8.3.4",
     "@astrojs/svelte": "^5.7.2",
     "@astrojs/tailwind": "5.1.2",
+    "@astrojs/vercel": "^7.8.2",
     "@types/sharp": "^0.32.0",
     "astro": "^4.16.8",
     "autoprefixer": "^10.4.20",

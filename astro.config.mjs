@@ -1,10 +1,13 @@
 // @ts-check
 import svelte from '@astrojs/svelte';
 import tailwind from '@astrojs/tailwind';
+import vercel from '@astrojs/vercel/serverless';
 import { defineConfig } from 'astro/config';
 
 import node from '@astrojs/node';
 import { loadEnv } from "vite";
+
+const isVercel = !!(process.env.VERCEL);
 
 const loadEnvConfig = () => {
   // @ts-expect-error
@@ -26,7 +29,7 @@ export default defineConfig({
   output: "server",
   site: PUBLIC_DOMAIN,
 
-  adapter: node({
+  adapter: isVercel? vercel() : node({
     mode: 'standalone',
   }),
 
