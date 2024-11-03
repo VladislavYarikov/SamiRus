@@ -37,8 +37,8 @@ const description = point
   : "Посмотрите метку в приложении Сами";
 
 const image = point
-  ? `${import.meta.env.SITE}assets/category/og/${point.category_id}.png`
-  : `${import.meta.env.SITE}assets/og-logo.png`;
+  ? `/assets/category/og/${point.category_id}.png`
+  : `/og-logo.png`;
 
 const deepLink = point && `sami://point/${point.id}`;
 ---
