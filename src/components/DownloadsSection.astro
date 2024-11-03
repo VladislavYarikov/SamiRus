@@ -8,9 +8,10 @@ import { cn } from "@/lib";
 
 interface Props {
   className?: string;
+  badgesClassName?: string;
 }
 
-const { className } = Astro.props;
+const { className, badgesClassName } = Astro.props;
 ---
 
 <section class={cn("", className)} id="downloads">
@@ -23,7 +24,10 @@ const { className } = Astro.props;
   </div>
 
   <div
-    class="flex flex-wrap items-center justify-center gap-4 rounded-[36px] bg-linear-accent py-20 "
+    class={cn(
+      "flex flex-wrap items-center justify-center gap-4 rounded-[36px] bg-linear-accent py-20",
+      badgesClassName
+    )}
   >
     <div class="badge">
       <a

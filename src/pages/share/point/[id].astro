@@ -1,0 +1,96 @@
+---
+import DownloadsSection from "@/components/DownloadsSection.astro";
+import Layout from "@/layouts/Layout.astro";
+import { POINT_TYPE, type PointShared } from "@/lib/point";
+
+const { id } = Astro.params;
+
+let point: undefined | PointShared;
+
+const loadPoint = async () => {
+  try {
+    const url = new URL(`https://api.сами.рус/points/share/${id}/nolog`);
+    console.warn("URL", url.toString());
+    const response = await fetch(url.toString());
+    const data = await response.json();
+    if (!response.ok || !data) {
+      return;
+    }
+
+    point = data as PointShared;
+
+    return point;
+  } catch (error) {
+    console.error("Error loading point", error);
+    return;
+  }
+};
+
+await loadPoint();
+
+const title = point
+  ? `Посмотрите ${point.type === POINT_TYPE.request ? `заказ на ${point.category.title}` : `технику в категории ${point.category.title}`} в приложении Сами`
+  : "Посмотрите метку в приложении Сами";
+
+const description = point
+  ? `Скачайте приложение Сами и посмотрите ${point.type === POINT_TYPE.request ? `заказ на ${point.category.title}` : `технику в категории ${point.category.title}`}`
+  : "Посмотрите метку в приложении Сами";
+
+const image = point
+  ? `${import.meta.env.SITE}assets/category/og/${point.category_id}.png`
+  : `${import.meta.env.SITE}assets/og-logo.png`;
+
+const deepLink = point && `sami://point/${point.id}`;
+---
+
+<script>
+  const openAppElement = document.getElementById("open-app");
+  if (openAppElement) {
+    openAppElement.addEventListener("click", (e) => {
+      e.preventDefault();
+      const fallback = document.getElementById("fallback");
+      const appUri = openAppElement.getAttribute("href");
+      const start = new Date().getTime();
+
+      setTimeout(function () {
+        var end = new Date().getTime();
+        if (end - start > 1000) return; // App opened successfully
+
+        openAppElement.style.display = "none";
+        alert(
+          "Не удалось открыть приложение Сами. Пожалуйста, установите его из магазина приложений."
+        );
+      }, 500);
+    });
+  }
+</script>
+
+<Layout title={title} description={description}>
+  <slot slot="meta">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:url"
+      content={`${import.meta.env.SITE}${Astro.url.pathname}`}
+    />
+    <meta property="og:title" content="Сами" />
+    <meta property="og:description" content={title} />
+    <meta property="og:image" content={image} />
+  </slot>
+
+  <div class="flex flex-col gap-16 min-h-screen items-center justify-center">
+    {
+      point && (
+        <a
+          class="bg-accent text-white px-8 py-6 rounded-xl"
+          href={deepLink}
+          id="open-app"
+        >
+          Перейти в приложение Сами
+        </a>
+      )
+    }
+
+    <DownloadsSection badgesClassName="tablet:bg-none" />
+  </div>
+</Layout>

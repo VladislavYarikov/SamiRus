@@ -1,4 +1,9 @@
-export interface PointShare {
+export const POINT_TYPE = {
+  request: 1,
+  technic: 2,
+} as const;
+
+export interface PointShared {
   id: string;
   user_id: string;
   type: number;
