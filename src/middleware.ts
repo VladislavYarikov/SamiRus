@@ -1,11 +1,5 @@
 import { defineMiddleware, sequence } from "astro:middleware";
-
-const isVercel = process.env.VERCEL;
-
-// import "@/lib/compressionStream.js" if runtime is not Vercel
-if (!isVercel) {
-  import("./lib/compressionStream.js");
-}
+import("./lib/compressionStream.js");
 
 const compression = defineMiddleware(
   async ({ request, cookies, locals }, next) => {
