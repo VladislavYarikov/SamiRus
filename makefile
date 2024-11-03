@@ -16,7 +16,7 @@ export DOCKER_BUILDKIT=1
 # Target to build the Docker image
 .PHONY: image
 image:
-	@echo "Building Docker image for $PUBLIC_DOMAIN"
+	@echo "Building Docker image for $(PUBLIC_DOMAIN)"
 	docker build \
 		--platform=$(PLATFORM) \
 		--cache-from=$(CACHE_IMAGE) \
