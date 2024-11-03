@@ -1,5 +1,3 @@
-include .env
-
 # Default values
 TAG ?= latest
 PLATFORM := linux/amd64
@@ -8,6 +6,13 @@ CACHE_IMAGE := $(IMAGE):$(TAG)
 
 # Enable Docker BuildKit
 export DOCKER_BUILDKIT=1
+
+# Include the environment variables if .env file exists
+.PHONY: load-env
+load-env:
+	if [ -f .env ]; then \
+		export $(shell cat .env | xargs); \
+	fi
 
 # Target to build the Docker image
 .PHONY: image
