@@ -10,7 +10,7 @@ let point: undefined | PointShared;
 const loadPoint = async () => {
   try {
     const url = new URL(`https://api.сами.рус/points/share/${id}/nolog`);
-    console.warn("URL", url.toString());
+
     const response = await fetch(url.toString());
     const data = await response.json();
     if (!response.ok || !data) {
