@@ -22,7 +22,7 @@ image:
 		-t $(IMAGE):$(TAG) \
 		--build-arg BUILD_DATE=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ') \
 		--build-arg VCS_REF=$(shell git rev-parse --short HEAD) \
-		-e $(PUBLIC_DOMAIN) \
+		--build-arg PUBLIC_DOMAIN=$(PUBLIC_DOMAIN) \
 		.
 
 # Target to push the image to the registry

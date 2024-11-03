@@ -1,5 +1,8 @@
 FROM oven/bun:1.1.22 AS deps
 
+ARG PUBLIC_DOMAIN
+ENV PUBLIC_DOMAIN=$PUBLIC_DOMAIN
+
 WORKDIR /app
 
 COPY package.json bun.lockb ./
