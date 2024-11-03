@@ -1,13 +1,15 @@
-FROM oven/bun:1.1.22 AS deps
-
 ARG PUBLIC_DOMAIN
-ENV PUBLIC_DOMAIN=$PUBLIC_DOMAIN
+
+# Dependencies stage
+FROM oven/bun:1.1.22 AS deps
 
 WORKDIR /app
 
 COPY package.json bun.lockb ./
 RUN bun install --frozen-lockfile
 
+
+# Build stage
 FROM oven/bun:1.1.22 AS build
 
 WORKDIR /app
@@ -16,9 +18,11 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ENV NODE_ENV=production
+ENV PUBLIC_DOMAIN=$PUBLIC_DOMAIN
 
 RUN bun run build
 
+# Release stage
 FROM oven/bun:1.1.22 AS release
 
 WORKDIR /app
