@@ -5,7 +5,7 @@ networks:
     external: true
 
 services:
-  sami_premium:
+  sami-plus:
     restart: always
     container_name: sami-plus
     image: ${IMAGE}
@@ -25,39 +25,46 @@ services:
         max-file: "3"
     labels:
       - "traefik.enable=true"
+      - "traefik.http.services.sami-plus.loadbalancer.server.port=${PORT}"
       
       # Router primary domain sami.plus
       - "traefik.http.routers.sami-plus.rule=Host(`sami.plus`)"
       - "traefik.http.routers.sami-plus.tls.certresolver=le"
-      - "traefik.http.services.sami-plus.loadbalancer.server.port=${PORT}"
+      - "traefik.http.routers.sami-plus.service=sami-plus"
+      
 
       # Router secondary domain сами.рус
       - "traefik.http.routers.sami-rus.rule=Host(`xn--80aqls.xn--p1acf`)"
       - "traefik.http.routers.sami-rus.tls.certresolver=le"
-      - "traefik.http.services.sami-rus.loadbalancer.server.port=${PORT}"
+      - "traefik.http.routers.sami-rus.service=sami-plus"
 
-      # # Share app redirect
-      # - "traefik.http.routers.share-app-router.rule=Host(`share-app.sami.plus`)"
-      # - "traefik.http.routers.share-app-router.entrypoints=websecure"
-      # - "traefik.http.routers.share-app-router.tls=true"
-      # - "traefik.http.middlewares.share-app-redirect.redirectregex.regex=^https://share-app\\.sami\\.plus/(.*)"
-      # - "traefik.http.middlewares.share-app-redirect.redirectregex.replacement=${PUBLIC_DOMAIN}?share_id=$${1}"
-      # - "traefik.http.routers.share-app-router.middlewares=share-app-redirect"
-      
-      # # Older points redirect
-      # - "traefik.http.routers.points-router.rule=Host(`points.sami.plus`)"
-      # - "traefik.http.routers.points-router.entrypoints=websecure"
-      # - "traefik.http.routers.points-router.tls=true"
-      # - "traefik.http.middlewares.points-redirect.redirectregex.regex=^https://points\\.sami\\.plus/(.*)"
-      # - "traefik.http.middlewares.points-redirect.redirectregex.replacement=https://share.sami.plus/point/$${1}"
-      # - "traefik.http.routers.points-router.middlewares=points-redirect"
+      # points.sami.plus redirect
+      - "traefik.http.routers.points-sami-plus.rule=Host(`points.sami.plus`)"
+      - "traefik.http.routers.points-sami-plus.tls.certresolver=le"
+      - "traefik.http.routers.points-sami-plus.service=sami-plus"
 
-      # # Share point redirect
-      # - "traefik.http.routers.share-point-router.rule=Host(`share.sami.plus`) && PathPrefix(`/point/`)"
-      # - "traefik.http.routers.share-point-router.entrypoints=websecure"
-      # - "traefik.http.routers.share-point-router.tls=true"
-      # - "traefik.http.middlewares.share-point-redirect.redirectregex.regex=^https://share\\.sami\\.plus/point/(.*)"
-      # - "traefik.http.middlewares.share-point-redirect.redirectregex.replacement=${PUBLIC_DOMAIN}/share/point/$${1}"
-      # - "traefik.http.routers.share-point-router.middlewares=share-point-redirect"
+      - "traefik.http.middlewares.points-redirect.redirectregex.regex=^https://points\\.sami\\.plus/(.*)"
+      - "traefik.http.middlewares.points-redirect.redirectregex.replacement=https://share.sami.plus/point/$${1}"
+      - "traefik.http.routers.points-sami-plus.middlewares=points-redirect"
+
+      # share.sami.plus redirect
+      - "traefik.http.routers.share-sami-plus.rule=Host(`share.sami.plus`)"
+      - "traefik.http.routers.share-sami-plus.tls.certresolver=le"
+      - "traefik.http.routers.share-sami-plus.service=sami-plus"
+
+      - "traefik.http.middlewares.share-redirect.redirectregex.regex=^https://share\\.sami\\.plus/point/(.*)"
+      - "traefik.http.middlewares.share-redirect.redirectregex.replacement=https://sami.plus/share/point/$${1}"
+
+      - "traefik.http.routers.share-sami-plus.middlewares=share-redirect"
+
+      # share-app.sami.plus redirect
+      - "traefik.http.routers.share-app-sami-plus.rule=Host(`share-app.sami.plus`)"
+      - "traefik.http.routers.share-app-sami-plus.tls.certresolver=le"
+      - "traefik.http.routers.share-app-sami-plus.service=sami-plus"
+
+      - "traefik.http.middlewares.share-app-redirect.redirectregex.regex=^https://share-app\\.sami\\.plus/(.*)"
+      - "traefik.http.middlewares.share-app-redirect.redirectregex.replacement=${PUBLIC_DOMAIN}?referal=$${1}"
+
+      - "traefik.http.routers.share-app-sami-plus.middlewares=share-app-redirect"
 
      
