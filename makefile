@@ -16,13 +16,13 @@ export DOCKER_BUILDKIT=1
 # Target to build the Docker image
 .PHONY: image
 image:
-	@echo "Building Docker image for $(PUBLIC_DOMAIN)"
 	docker build \
 		--platform=$(PLATFORM) \
 		--cache-from=$(CACHE_IMAGE) \
 		-t $(IMAGE):$(TAG) \
 		--build-arg BUILD_DATE=$(shell date -u +'%Y-%m-%dT%H:%M:%SZ') \
 		--build-arg VCS_REF=$(shell git rev-parse --short HEAD) \
+		-e $(PUBLIC_DOMAIN) \
 		.
 
 # Target to push the image to the registry
