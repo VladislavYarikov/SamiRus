@@ -1,5 +1,11 @@
-import "@/lib/compressionStream.js"; // polyfill CompressionStream - // remove this once Bun supports CompressionStream: https://github.com/oven-sh/bun/issues/1723
 import { defineMiddleware, sequence } from "astro:middleware";
+
+const isVercel = process.env.VERCEL;
+
+// import "@/lib/compressionStream.js" if runtime is not Vercel
+if (!isVercel) {
+  import("./lib/compressionStream.js");
+}
 
 const compression = defineMiddleware(
   async ({ request, cookies, locals }, next) => {
