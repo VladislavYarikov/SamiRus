@@ -11,6 +11,7 @@ services:
     image: ${IMAGE}
     environment:
       - PUBLIC_DOMAIN
+      - PORT
     ports: 
       - ${PORT}:${PORT}
     networks:
@@ -25,31 +26,36 @@ services:
     labels:
       - "traefik.enable=true"
 
-      # Share app redirect
-      - "traefik.http.routers.share-app-router.rule=Host(`share-app.sami.plus`)"
-      - "traefik.http.routers.share-app-router.entrypoints=websecure"
-      - "traefik.http.routers.share-app-router.tls=true"
-      - "traefik.http.middlewares.share-app-redirect.redirectregex.regex=^https://share-app\\.sami\\.plus/(.*)"
-      - "traefik.http.middlewares.share-app-redirect.redirectregex.replacement=${PUBLIC_DOMAIN}?share_id=$${1}"
-      - "traefik.http.routers.share-app-router.middlewares=share-app-redirect"
+      # # Share app redirect
+      # - "traefik.http.routers.share-app-router.rule=Host(`share-app.sami.plus`)"
+      # - "traefik.http.routers.share-app-router.entrypoints=websecure"
+      # - "traefik.http.routers.share-app-router.tls=true"
+      # - "traefik.http.middlewares.share-app-redirect.redirectregex.regex=^https://share-app\\.sami\\.plus/(.*)"
+      # - "traefik.http.middlewares.share-app-redirect.redirectregex.replacement=${PUBLIC_DOMAIN}?share_id=$${1}"
+      # - "traefik.http.routers.share-app-router.middlewares=share-app-redirect"
       
-      # Older points redirect
-      - "traefik.http.routers.points-router.rule=Host(`points.sami.plus`)"
-      - "traefik.http.routers.points-router.entrypoints=websecure"
-      - "traefik.http.routers.points-router.tls=true"
-      - "traefik.http.middlewares.points-redirect.redirectregex.regex=^https://points\\.sami\\.plus/(.*)"
-      - "traefik.http.middlewares.points-redirect.redirectregex.replacement=https://share.sami.plus/point/$${1}"
-      - "traefik.http.routers.points-router.middlewares=points-redirect"
+      # # Older points redirect
+      # - "traefik.http.routers.points-router.rule=Host(`points.sami.plus`)"
+      # - "traefik.http.routers.points-router.entrypoints=websecure"
+      # - "traefik.http.routers.points-router.tls=true"
+      # - "traefik.http.middlewares.points-redirect.redirectregex.regex=^https://points\\.sami\\.plus/(.*)"
+      # - "traefik.http.middlewares.points-redirect.redirectregex.replacement=https://share.sami.plus/point/$${1}"
+      # - "traefik.http.routers.points-router.middlewares=points-redirect"
 
-      # Share point redirect
-      - "traefik.http.routers.share-point-router.rule=Host(`share.sami.plus`) && PathPrefix(`/point/`)"
-      - "traefik.http.routers.share-point-router.entrypoints=websecure"
-      - "traefik.http.routers.share-point-router.tls=true"
-      - "traefik.http.middlewares.share-point-redirect.redirectregex.regex=^https://share\\.sami\\.plus/point/(.*)"
-      - "traefik.http.middlewares.share-point-redirect.redirectregex.replacement=${PUBLIC_DOMAIN}/share/point/$${1}"
-      - "traefik.http.routers.share-point-router.middlewares=share-point-redirect"
+      # # Share point redirect
+      # - "traefik.http.routers.share-point-router.rule=Host(`share.sami.plus`) && PathPrefix(`/point/`)"
+      # - "traefik.http.routers.share-point-router.entrypoints=websecure"
+      # - "traefik.http.routers.share-point-router.tls=true"
+      # - "traefik.http.middlewares.share-point-redirect.redirectregex.regex=^https://share\\.sami\\.plus/point/(.*)"
+      # - "traefik.http.middlewares.share-point-redirect.redirectregex.replacement=${PUBLIC_DOMAIN}/share/point/$${1}"
+      # - "traefik.http.routers.share-point-router.middlewares=share-point-redirect"
 
-      # Router
+      # Router primary domain
       - "traefik.http.routers.sami-plus.rule=Host(`${PUBLIC_DOMAIN}`)"
       - "traefik.http.routers.sami-plus.tls.certresolver=le"
       - "traefik.http.services.sami-plus.loadbalancer.server.port=${PORT}"
+
+      # Router secondary domain сами.рус
+      - "traefik.http.routers.sami-rus.rule=Host(`xn--80aqls.xn--p1acf`)"
+      - "traefik.http.routers.sami-rus.tls.certresolver=le"
+      - "traefik.http.services.sami-rus.loadbalancer.server.port=${PORT}"
