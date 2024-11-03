@@ -11,6 +11,9 @@ WORKDIR /app
 
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+ENV NODE_ENV=production
+
 RUN bun run build
 
 FROM oven/bun:1.1.22 AS release
