@@ -6,14 +6,15 @@ on:
 
 env:
   SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-  IMAGE: ${{ vars.IMAGE }}
-  PORT: ${{ vars.PORT }}
-  PUBLIC_DOMAIN: ${{ vars.PUBLIC_DOMAIN }}
 
 jobs:
   build:
     runs-on: ubuntu-latest
     environment: yandex-cloud
+    env:
+      IMAGE: ${{ vars.IMAGE }}
+      PORT: ${{ vars.PORT }}
+      PUBLIC_DOMAIN: ${{ vars.PUBLIC_DOMAIN }}
 
     steps:
       - name: Checkout code
