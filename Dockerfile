@@ -18,6 +18,8 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
 ENV NODE_ENV=production
+
+ARG PUBLIC_DOMAIN
 ENV PUBLIC_DOMAIN=$PUBLIC_DOMAIN
 
 RUN bun run build
