@@ -6,6 +6,9 @@ on:
 
 env:
   SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+  IMAGE: ${{ vars.IMAGE }}
+  PORT: ${{ vars.PORT }}
+  PUBLIC_DOMAIN: ${{ vars.PUBLIC_DOMAIN }}
 
 jobs:
   build:
@@ -20,13 +23,9 @@ jobs:
         run: echo "${{ secrets.SA_KEY_BASE64 }}" | base64 -d | docker login --username json_key --password-stdin cr.yandex;
 
       - name: Build Docker image
-        env:
-          IMAGE: ${{ vars.IMAGE }}
         run: make image
 
       - name: Push Docker image
-        env:
-          IMAGE: ${{ vars.IMAGE }}
         run: make push
 
       - name: Setup SSH
@@ -39,8 +38,4 @@ jobs:
           ssh-keyscan -H sami.plus >> ~/.ssh/known_hosts
 
       - name: Deploy to Yandex.Cloud
-        env:
-          IMAGE: ${{ vars.IMAGE }}
-          PORT: ${{ vars.PORT }}
-          PUBLIC_DOMAIN: ${{ vars.PUBLIC_DOMAIN }}
         run: make deploy
