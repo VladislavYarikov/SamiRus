@@ -11,10 +11,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     environment: yandex-cloud
-    env:
-      IMAGE: ${{ vars.IMAGE }}
-      PORT: ${{ vars.PORT }}
-      PUBLIC_DOMAIN: ${{ vars.PUBLIC_DOMAIN }}
 
     steps:
       - name: Checkout code
@@ -24,6 +20,10 @@ jobs:
         run: echo "${{ secrets.SA_KEY_BASE64 }}" | base64 -d | docker login --username json_key --password-stdin cr.yandex;
 
       - name: Build Docker image
+        env:
+          IMAGE: ${{ vars.IMAGE }}
+          PORT: ${{ vars.PORT }}
+          PUBLIC_DOMAIN: ${{ vars.PUBLIC_DOMAIN }}
         run: make image
 
       - name: Push Docker image
@@ -39,4 +39,8 @@ jobs:
           ssh-keyscan -H sami.plus >> ~/.ssh/known_hosts
 
       - name: Deploy to Yandex.Cloud
+        env:
+          IMAGE: ${{ vars.IMAGE }}
+          PORT: ${{ vars.PORT }}
+          PUBLIC_DOMAIN: ${{ vars.PUBLIC_DOMAIN }}
         run: make deploy
