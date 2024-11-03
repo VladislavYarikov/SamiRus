@@ -7,6 +7,8 @@ import { defineConfig } from 'astro/config';
 import node from '@astrojs/node';
 import { loadEnv } from "vite";
 
+import sitemap from '@astrojs/sitemap';
+
 const isVercel = !!(process.env.VERCEL);
 
 const loadEnvConfig = () => {
@@ -35,7 +37,7 @@ export default defineConfig({
 
   integrations: [tailwind({
     applyBaseStyles: false
-  }), svelte()],
+  }), svelte(), sitemap()],
 
   redirects: {
     '/terms': {
