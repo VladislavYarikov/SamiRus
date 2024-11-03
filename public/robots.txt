@@ -1,4 +1,0 @@
-User-agent: *
-Disallow: /share/
-
-Sitemap: https://www.example.com/sitemap.xml
