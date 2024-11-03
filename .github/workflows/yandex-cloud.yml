@@ -20,9 +20,13 @@ jobs:
         run: echo "${{ secrets.SA_KEY_BASE64 }}" | base64 -d | docker login --username json_key --password-stdin cr.yandex;
 
       - name: Build Docker image
+        env:
+          IMAGE: ${{ vars.IMAGE }}
         run: make image
 
       - name: Push Docker image
+        env:
+          IMAGE: ${{ vars.IMAGE }}
         run: make push
 
       - name: Setup SSH
