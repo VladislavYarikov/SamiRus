@@ -48,8 +48,8 @@ const deepLink = point && `sami://point/${point.id}`;
   if (openAppElement) {
     openAppElement.addEventListener("click", (e) => {
       e.preventDefault();
-      const fallback = document.getElementById("fallback");
       const appUri = openAppElement.getAttribute("href");
+      window.location = appUri;
       const start = new Date().getTime();
 
       setTimeout(function () {
