@@ -25,6 +25,16 @@ services:
         max-file: "3"
     labels:
       - "traefik.enable=true"
+      
+      # Router primary domain sami.plus
+      - "traefik.http.routers.sami-plus.rule=Host(`sami.plus`)"
+      - "traefik.http.routers.sami-plus.tls.certresolver=le"
+      - "traefik.http.services.sami-plus.loadbalancer.server.port=${PORT}"
+
+      # Router secondary domain сами.рус
+      - "traefik.http.routers.sami-rus.rule=Host(`xn--80aqls.xn--p1acf`)"
+      - "traefik.http.routers.sami-rus.tls.certresolver=le"
+      - "traefik.http.services.sami-rus.loadbalancer.server.port=${PORT}"
 
       # # Share app redirect
       # - "traefik.http.routers.share-app-router.rule=Host(`share-app.sami.plus`)"
@@ -50,12 +60,4 @@ services:
       # - "traefik.http.middlewares.share-point-redirect.redirectregex.replacement=${PUBLIC_DOMAIN}/share/point/$${1}"
       # - "traefik.http.routers.share-point-router.middlewares=share-point-redirect"
 
-      # Router primary domain
-      - "traefik.http.routers.sami-plus.rule=Host(`${PUBLIC_DOMAIN}`)"
-      - "traefik.http.routers.sami-plus.tls.certresolver=le"
-      - "traefik.http.services.sami-plus.loadbalancer.server.port=${PORT}"
-
-      # Router secondary domain сами.рус
-      - "traefik.http.routers.sami-rus.rule=Host(`xn--80aqls.xn--p1acf`)"
-      - "traefik.http.routers.sami-rus.tls.certresolver=le"
-      - "traefik.http.services.sami-rus.loadbalancer.server.port=${PORT}"
+     
