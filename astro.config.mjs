@@ -48,5 +48,13 @@ export default defineConfig({
       status: 301,
       destination: '/legal/privacy-policy.pdf'
     },
+    '/know-more': {
+      status: 307,
+      destination: '?text=Привет. Хочу получать заказы раньше!'
+    },
+    '/contact-us': {
+      status: 307,
+      destination: 'https://wa.me/79300130949?text=Здравствуйте, есть вопрос по приложению Сами: '
+    },
   }, 
 });
