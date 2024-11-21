@@ -50,11 +50,11 @@ export default defineConfig({
     },
     '/know-more': {
       status: 302,
-      destination: 'https://wa.me/79300130949?text=Привет.%20Хочу%20получать%20заказы%20раньше!%20'
+      destination: 'https://wa.me/79300130949?text=Привет. Хочу получать заказы раньше!'
     },
     '/contact-us': {
       status: 302,
-      destination: 'https://wa.me/79300130949?text=%D0%97%D0%B4%D1%80%D0%B0%D0%B2%D1%81%D1%82%D0%B2%D1%83%D0%B9%D1%82%D0%B5%2C+%D0%B5%D1%81%D1%82%D1%8C+%D0%B2%D0%BE%D0%BF%D1%80%D0%BE%D1%81+%D0%BF%D0%BE+%D0%BF%D1%80%D0%B8%D0%BB%D0%BE%D0%B6%D0%B5%D0%BD%D0%B8%D1%8E+%D0%A1%D0%B0%D0%BC%D0%B8%3A+'
+      destination: 'https://wa.me/79300130949?text=Здравствуйте, есть вопрос по приложению Сами: '
     },
   }, 
 });
