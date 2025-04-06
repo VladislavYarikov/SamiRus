@@ -8,6 +8,21 @@ import googlePlayBadge from "@/assets/landing/badges/googleplay.png";
 import rustoreBadge from "@/assets/landing/badges/rustore.png";
 ---
 
+<script type="text/partytown">
+  document.querySelector('.upperPlaymarket').addEventListener('click', function() {
+    window.trackGoal(`ANY_BUTTON_LISTENER`);
+    window.trackGoal(`upperPlayMarket_listener`);
+  });
+  document.querySelector('.upperAppStore').addEventListener('click', function() {
+    window.trackGoal(`ANY_BUTTON_LISTENER`);
+    window.trackGoal(`upperAppStore_listener`);
+  });
+  document.querySelector('.upperRustore').addEventListener('click', function() {
+    window.trackGoal(`ANY_BUTTON_LISTENER`);
+    window.trackGoal(`upperRustore_listener`);
+  });
+</script>
+
 <section
   class="relative flex h-[calc(95vh-var(--header-height))] min-h-[700px] flex-col gap-2 rounded-b-[50px] bg-linear-accent pb-10 pt-6 tablet:h-auto tablet:min-h-max tablet:gap-10 tablet:bg-none"
   id="hero"
@@ -32,7 +47,7 @@ import rustoreBadge from "@/assets/landing/badges/rustore.png";
   </div>
 
   <div class="flex flex-wrap items-center justify-center gap-4 py-4">
-    <div class="badge">
+    <div class="badge upperPlaymarket">
       <a
         href="https://play.google.com/store/apps/details?id=ru.sami.app"
         aria-label="Ссылка на Google Play"
@@ -40,15 +55,16 @@ import rustoreBadge from "@/assets/landing/badges/rustore.png";
         <Image src={googlePlayBadge} alt="Google Play" loading="lazy" />
       </a>
     </div>
-    <div class="badge">
+    <div class="badge upperAppStore">
       <a
         href="https://apps.apple.com/ru/app/%D1%81%D0%B0%D0%BC%D0%B8/id1549192749"
         aria-label="Ссылка на App Store"
+        target="_blank"
       >
         <Image src={appStoreBadge} alt="AppStore" loading="lazy" />
       </a>
     </div>
-    <div class="badge">
+    <div class="badge upperRustore">
       <a
         href="https://trk.mail.ru/c/me10h4?bundle_id=ru.sami.app"
         aria-label="Ссылка на Rustore"

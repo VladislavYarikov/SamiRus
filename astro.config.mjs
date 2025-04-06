@@ -2,6 +2,7 @@
 import svelte from '@astrojs/svelte';
 import tailwind from '@astrojs/tailwind';
 import vercel from '@astrojs/vercel/serverless';
+import partytown from '@astrojs/partytown';
 import { defineConfig } from 'astro/config';
 
 import node from '@astrojs/node';
@@ -37,7 +38,7 @@ export default defineConfig({
 
   integrations: [tailwind({
     applyBaseStyles: false
-  }), svelte(), sitemap()],
+  }), svelte(), sitemap(), partytown()],
 
   redirects: {
     '/terms': {

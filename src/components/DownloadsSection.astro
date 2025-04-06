@@ -9,10 +9,26 @@ import { cn } from "@/lib";
 interface Props {
   className?: string;
   badgesClassName?: string;
+  pageType?: string;
 }
 
-const { className, badgesClassName } = Astro.props;
+const { className, badgesClassName, pageType } = Astro.props;
 ---
+
+<script type="text/partytown" define:vars={{pageType}}>
+  document.querySelector(`.${pageType}PlayMarket`).addEventListener('click', function() {
+    window.trackGoal(`ANY_BUTTON_LISTENER`);
+    window.trackGoal(`${pageType}PlayMarket_listener`);
+  });
+  document.querySelector(`.${pageType}AppStore`).addEventListener('click', function() {
+    window.trackGoal(`ANY_BUTTON_LISTENER`);
+    window.trackGoal(`${pageType}AppStore_listener`);
+  });
+  document.querySelector(`.${pageType}Rustore`).addEventListener('click', function() {
+    window.trackGoal(`ANY_BUTTON_LISTENER`);
+    window.trackGoal(`${pageType}Rustore_listener`);
+  });
+</script>
 
 <section class={cn("", className)} id="downloads">
   <div class="px-4 text-center">
@@ -29,7 +45,7 @@ const { className, badgesClassName } = Astro.props;
       badgesClassName
     )}
   >
-    <div class="badge">
+    <div class=`badge ${pageType}PlayMarket`>
       <a
         href="https://play.google.com/store/apps/details?id=ru.sami.app"
         aria-label="Google Play"
@@ -42,10 +58,11 @@ const { className, badgesClassName } = Astro.props;
         />
       </a>
     </div>
-    <div class="badge">
+    <div class=`badge ${pageType}AppStore`>
       <a
         href="https://apps.apple.com/ru/app/%D1%81%D0%B0%D0%BC%D0%B8/id1549192749"
         aria-label="AppStore"
+        target="_blank"
       >
         <Image
           src={appStoreBadge}
@@ -55,7 +72,7 @@ const { className, badgesClassName } = Astro.props;
         />
       </a>
     </div>
-    <div class="badge">
+    <div class=`badge ${pageType}Rustore`>
       <a
         href="https://trk.mail.ru/c/me10h4?bundle_id=ru.sami.app"
         aria-label="Rustore"

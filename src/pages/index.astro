@@ -10,6 +10,8 @@ import HowToUseSection from "@/components/HowToUseSection.astro";
 const title = "Аренда спецтехники без комиссии | Мобильное приложение Сами";
 const description =
   "Аренда спецтехники в Москве, Московской области и по всей России через приложение Сами. Более 40 категорий: автокраны, экскаваторы, автовышки. Поиск ближайшей техники в вашем районе.";
+
+const referal = Astro.url.searchParams.get("referal");
 ---
 
 <Layout title={title} description={description}>
@@ -30,6 +32,12 @@ const description =
     <FeaturesSection />
     <HowToUseSection />
     <FaqSection />
-    <DownloadsSection />
+    <DownloadsSection pageType="lower"/>
   </div>
 </Layout>
+
+<script type="text/partytown" define:vars={{ referal }}>
+  if (referal) {
+    window.trackGoal('REFERAL', { referal});
+  }
+</script>

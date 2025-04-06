@@ -13,7 +13,69 @@ interface Props {
 const { title, description } = Astro.props;
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const pathname = canonicalURL.pathname;
+
+const SearchParams = Object.fromEntries(Astro.url.searchParams.entries());
+
+const tagId = import.meta.env.PUBLIC_YM_TAG_ID
+
+// Track User-Agent
+const userAgent = Astro.request.headers.get('User-Agent');
+const ip = Astro.clientAddress;
 ---
+
+<script type="text/partytown" define:vars={{ tagId, userAgent, ip}}>  
+  // Function to track goals
+  window.trackGoal = async (goalName, params = {}, options = {
+    ym: true,
+    fetch: true,
+  }) => {
+        console.log('trackGoal', goalName);
+        
+        if (window.ym) {
+            window.ym(tagId, 'reachGoal', goalName)
+        }
+
+        if (options.fetch) {
+          // Track Previous Page
+          const previousPage = document.referrer;
+          
+          fetch('http://localhost:3000/', {
+              
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                goalName,
+                params,
+                ip,
+                userAgent,
+                previousPage
+              })
+          })
+        }
+    }
+
+  // Yandex Metrika
+  (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();
+   for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+   k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(tagId, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        webvisor:true
+   });
+   
+  window.trackGoal('VISIT', {}, {
+    ym: true,
+    fetch: true,
+  });
+</script>
 
 <html lang="ru">
   <head>
@@ -35,8 +97,10 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
     />
 
     <!-- Other meta tags -->
-    <slot name="meta" />
+    <slot name="meta" />  
   </head>
+  
+  <div><img src="https://mc.yandex.ru/watch/98817597" style="position:absolute; left:-9999px;" alt="" /></div>
 
   <body style="--header-height: 64px">
     <header class="relative h-[var(--header-height)] w-full flex items-center">

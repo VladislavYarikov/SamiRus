@@ -39,6 +39,7 @@ const description = point
 const image = point
   ? `/assets/category/og/${point.category_id}.png`
   : `/og-logo.png`;
+console.log(point, image)
 
 const deepLink = point && `sami://point/${point.id}`;
 ---
@@ -92,6 +93,11 @@ const deepLink = point && `sami://point/${point.id}`;
       )
     }
 
-    <DownloadsSection badgesClassName="tablet:bg-none" />
+    <DownloadsSection badgesClassName="tablet:bg-none" pageType="point"/>
   </div>
 </Layout>
+
+
+<script type="text/partytown" define:vars={{ id }}>
+  window.trackGoal('POINT_SHARE', { id });
+</script>
