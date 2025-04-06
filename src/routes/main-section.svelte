@@ -7,7 +7,7 @@
 <section class="main-section">
 	<div class="title main-script">
 		<h2>
-			Экскаватор-погрузчик
+			Экскаватор-test
 		</h2>
 		<h2>
 			за 1 минуту
